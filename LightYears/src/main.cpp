@@ -2,11 +2,11 @@
 #include <iostream>
 
 #include "SFML/Graphics.hpp"
-
+#include <framework/application.h>
 
 void main()
 {
+	ly::application* application = new ly::application();
+	application->run();
 
-	sf::RenderWindow render_window{ sf::VideoMode(10000,10000), "My Window" };
-	std::cout << "Hello!";
 }
