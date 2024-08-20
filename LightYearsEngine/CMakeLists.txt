@@ -1,9 +1,7 @@
 
 
 add_library(${LIGHT_YEARS_ENGINE_TARGET_NAME} STATIC
-	
-
-${CMAKE_CURRENT_SOURCE_DIR}/include/framework/application.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/framework/application.h
 	${CMAKE_CURRENT_SOURCE_DIR}/src/framework/application.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/include/entryPoint.h
 	${CMAKE_CURRENT_SOURCE_DIR}/src/entryPoint.cpp

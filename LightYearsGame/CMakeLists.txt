@@ -7,13 +7,13 @@ add_executable(${LIGHT_YEARS_GAME_TARGET_NAME}
 )
 
 target_include_directories(${LIGHT_YEARS_GAME_TARGET_NAME} PUBLIC
-	${CMAKE_CURRENT_SOURCE_DIR}/include
+	${CMAKE_CURRENT_SOURCE_DIR}/include 
 )
 
 target_link_libraries(${LIGHT_YEARS_GAME_TARGET_NAME} PUBLIC ${LIGHT_YEARS_ENGINE_TARGET_NAME} )
 
 
-function(CopyLibDirToTarget LIB_NAME TARGET_NAME)
+function(copyLibDirToTarget LIB_NAME TARGET_NAME)
 	add_custom_command(TARGET ${TARGET_NAME}
 	POST_BUILD
 	COMMAND
@@ -23,5 +23,5 @@ function(CopyLibDirToTarget LIB_NAME TARGET_NAME)
 	)
 endfunction()
 
-copyLibDirToTarget(${LIGHT_YEARS_GAME_TARGET_NAME} ${LIGHT_YEARS_GAME_TARGET_NAME})
+copyLibDirToTarget(${LIGHT_YEARS_ENGINE_TARGET_NAME} ${LIGHT_YEARS_GAME_TARGET_NAME})
 
