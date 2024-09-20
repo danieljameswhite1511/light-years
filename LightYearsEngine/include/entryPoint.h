@@ -3,12 +3,12 @@
 
 namespace ly
 {
-	class application;//forward declaration
+	class Application;//forward declaration
 
 	
 
 
 }
 
-extern ly::application* getApplication();//extern means it has to be implemented somewhere else
+extern ly::Application* getApplication();//extern means it has to be implemented somewhere else
 //this happens automatically but this is specification

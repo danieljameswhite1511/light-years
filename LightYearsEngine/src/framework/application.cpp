@@ -1,20 +1,26 @@
 
 #include <iostream>
-#include <framework/application.h>
+#include <framework/Application.h>
+
+#include "framework/AssetManager.h"
+#include "framework/Core.h"
+#include "framework/World.h"
 
 
 namespace ly
 {
-	application::application()
-		:mWindow{sf::VideoMode(1024, 1440), "Light Years"}
-		, mTargetFrameRate{60.f}
-		, mTickClock{}
+
+	Application::Application(unsigned int windowWidth, unsigned int windowHeight, const std::string title, sf::Uint32 style)
+			:mWindow{ sf::VideoMode(windowWidth, windowHeight), title, style }
+			, mTargetFrameRate{ 60.f }
+			, mTickClock{}
+			, currentWorld{ nullptr }
+			, mCleanCycleClock{}
+			, mCleanCycleInterval(2.f)
 	{
-
 	}
-
 	
-	void application::run()
+	void Application::Run()
 	{
 		mTickClock.restart();
 		float accumulatedTime = 0.f;
@@ -31,52 +37,69 @@ namespace ly
 				}
 			}
 
-			float frameDeltaTime = mTickClock.restart().asSeconds();
+			
 			accumulatedTime += mTickClock.restart().asSeconds();
+			
 
 			if(accumulatedTime >= targetDeltaTime)
 			{
 				
-				tickInternal(accumulatedTime);
+				TickInternal(accumulatedTime);
 				accumulatedTime -= targetDeltaTime;
-				renderInternal();
+				RenderInternal();
 				
 			}
-
 			//std::cout<< "Real time" << 1.f / frameDeltaTime << "\n";
+		}
+	}
+
+
+	sf::Vector2u Application::GetWindowSize() const
+	{
+		return mWindow.getSize();
+	}
+
+	void Application::TickInternal(float deltaTime)
+	{
+		Tick(deltaTime);
+		if(currentWorld)
+		{
+			//currentWorld->BeginPlayInternal();
+			currentWorld->TickInternal(deltaTime);
+		}
+
+		if(mCleanCycleClock.getElapsedTime().asSeconds() >= mCleanCycleInterval)
+		{
+			
+			mCleanCycleClock.restart();
+			AssetManager::Get().CleanCycle();
 			
 		}
 	}
 
-	void application::tickInternal(float deltaTime)
+	void Application::Tick(float deltaTime)
 	{
-		tick(deltaTime);
+		//LOG("Frame rate is %f", 1.f / deltaTime);
 	}
 
-	void application::tick(float deltaTime)
-	{
-		std::cout << "delta time" << deltaTime << "\n";
-		std::cout << 1.f / deltaTime << "\n";
-
-	}
-
-	void application::renderInternal()
+	void Application::RenderInternal()
 	{
 		mWindow.clear();
-
-		render();
-		
+		Render();
 		mWindow.display();
 	}
 
-	void application::render()
+	void Application::Render()
 	{
+		currentWorld -> render(mWindow);
 
-		sf::RectangleShape rect{ sf::Vector2f{100, 100} };
+
+		/*sf::RectangleShape rect{ sf::Vector2f{100, 100} };
 		rect.setFillColor(sf::Color::Blue);
 		rect.setPosition(mWindow.getSize().x / 2.f, mWindow.getSize().y / 2.f);
 		rect.setOrigin(50, 50);
 		mWindow.draw(rect);
+		*/
 
 	}
 }
