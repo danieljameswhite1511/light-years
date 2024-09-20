@@ -11,8 +11,11 @@ namespace ly {
 		World(Application* applicationOwner);
 		void BeginPlayInternal();
 		void TickInternal(float deltaTime);
-		template<typename ActorType>
-		weak<ActorType> SpawnActor();
+
+		//has variadic template params
+		template<typename ActorType, typename... Args>
+		weak<ActorType> SpawnActor(Args... args);
+
 		void render(sf::RenderWindow& window);
 		sf::Vector2u GetWindowSize();
 	private:
@@ -25,11 +28,12 @@ namespace ly {
 
 	};
 
-	template <typename ActorType>
-	weak<ActorType> World::SpawnActor()
+	template <typename ActorType, typename... Args>
+	weak<ActorType> World::SpawnActor(Args... args)
 	{
-		shared<ActorType> newActor{ new ActorType{this} };
+		shared<ActorType> newActor{ new ActorType(this, args...) };
 		mPendingActors.push_back(newActor);
+
 		return newActor;
 	}
 }

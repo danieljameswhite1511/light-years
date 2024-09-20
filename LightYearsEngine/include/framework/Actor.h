@@ -22,12 +22,13 @@ namespace ly
 		void SetActorRotation(float newRotation);
 		float GetActorRotation();
 		
-		sf::Vector2f GetActorPosition();
+		sf::Vector2f GetActorLocation() const;
 		void AddActorLocationOffset(const sf::Vector2f& offsetAmt);
 		void AddActorRotationOffset(const float offsetAmt);
 		sf::Vector2f GetActorForwardDirection();
 		sf::Vector2f GetActorRightDirection();
 		sf::Vector2u GetWindowSize() const;
+		World* GetWorld() const { return  mOwningWorld; }
 
 
 	private:

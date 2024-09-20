@@ -52,6 +52,7 @@ namespace ly
 		mTexture = AssetManager::Get().LoadTexture(path);
 		if(!mTexture) return;
 		mSprite.setTexture(*mTexture);
+
 	
 		int textureWidth = mTexture->getSize().x;
 		int textureHeight = mTexture->getSize().y;
@@ -84,14 +85,14 @@ namespace ly
 
 	
 
-	sf::Vector2f Actor::GetActorPosition()
+	sf::Vector2f Actor::GetActorLocation() const
 	{
 		return mSprite.getPosition();
 	}
 
 	void Actor::AddActorLocationOffset(const sf::Vector2f& offsetAmt)
 	{
-		 SetActorLocation(GetActorPosition() + offsetAmt);
+		 SetActorLocation(GetActorLocation() + offsetAmt);
 	}
 
 	void Actor::AddActorRotationOffset(const float offsetAmt)
@@ -113,6 +114,7 @@ namespace ly
 	{
 		return mOwningWorld->GetWindowSize();
 	}
+
 
 	void Actor::CentrePivot(){
 		

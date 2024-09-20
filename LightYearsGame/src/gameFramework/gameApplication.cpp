@@ -8,7 +8,7 @@
 
 ly::Application* getApplication()
 {
-	return new ly::GameApplication{1024, 1440, "Lightyears", 3};
+	return new ly::GameApplication{600, 980, "Lightyears", 3};
 }
 
 namespace ly

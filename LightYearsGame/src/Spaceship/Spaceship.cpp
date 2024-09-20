@@ -22,4 +22,8 @@ namespace ly {
 		AddActorLocationOffset(GetVelocity() * deltaTime);
 
 	}
+
+	void Spaceship::Shoot()
+	{
+	}
 }

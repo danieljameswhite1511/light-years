@@ -9,12 +9,14 @@ namespace ly {
 		void Shoot();
 		virtual bool CanShoot() const { return true; }
 		virtual bool IsOnCoolDown() const { return true; }
+		Actor* GetOwner() const { return mOwner; }
 
 	protected:
-		Shooter(Actor* owningActor);
+		Shooter(Actor* owner);
 
 	private:
 		virtual void ShootImpl() = 0;//This makes the class Abstract
+		Actor* mOwner;
 	};
 
 	

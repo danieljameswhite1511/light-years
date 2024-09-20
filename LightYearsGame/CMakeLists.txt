@@ -13,6 +13,8 @@ add_executable(${LIGHT_YEARS_GAME_TARGET_NAME}
 	${CMAKE_CURRENT_SOURCE_DIR}/src/Weapon/Shooter.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/include/Weapon/BulletShooter.h
 	${CMAKE_CURRENT_SOURCE_DIR}/src/Weapon/BulletShooter.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/include/Weapon/Bullet.h
+	${CMAKE_CURRENT_SOURCE_DIR}/src/Weapon/Bullet.cpp
 
 )
 

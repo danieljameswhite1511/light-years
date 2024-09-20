@@ -4,8 +4,8 @@
 
 namespace ly {
 
-	const float pi = 3.1415926535;
-	;
+	const float PI = 3.1415926535;
+
 	sf::Vector2f RotationToVector(float rotation)
 	{
 		float radians = DegreesToRadians(rotation);
@@ -14,12 +14,12 @@ namespace ly {
 
 	float DegreesToRadians(float degrees)
 	{
-		return degrees * (pi / 180.f);
+		return degrees * (PI / 180.f);
 	}
 
 	float RadiansToDegrees(float radians)
 	{
-		return radians * (180.f / pi);
+		return radians * (180.f / PI);
 	}
 
 	
