@@ -2,11 +2,13 @@
 
 #include "framework/Application.h"
 
-void main()
+int main()
 {
 	ly::Application* app = getApplication();
 
 	app->Run();
 
 	delete app;
+
+	return 0;
 }

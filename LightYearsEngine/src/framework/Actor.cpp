@@ -83,7 +83,6 @@ namespace ly
 		return mSprite.getRotation();
 	}
 
-	
 
 	sf::Vector2f Actor::GetActorLocation() const
 	{

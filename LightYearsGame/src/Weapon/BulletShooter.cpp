@@ -30,7 +30,7 @@ namespace ly
 		mCooldownClock.restart();
 		LOG("Shooting");
 
-		weak<Bullet> newBullet = GetOwner()->GetWorld()->SpawnActor<Bullet>(GetOwner(),"SpaceShooterRedux/PNG/Lasers/laserBlue02.png");
+		const weak<Bullet> newBullet = GetOwner()->GetWorld()->SpawnActor<Bullet>(GetOwner(),"SpaceShooterRedux/PNG/Lasers/laserBlue02.png");
 		newBullet.lock()->SetActorLocation(GetOwner()->GetActorLocation());
 		newBullet.lock()->SetActorRotation(GetOwner()->GetActorRotation());
 	}
