@@ -24,12 +24,20 @@ namespace ly
 	{
 		Actor::Tick(deltaTime);
 		Move(deltaTime);
+		if(IsActorOutOfWindowBounds()) {
+			Destroy();
+		}
 
 	}
 
 	void Bullet::Move(float deltaTime)
 	{
-		AddActorLocationOffset(GetActorForwardDirection() * mSpeed * deltaTime);
+		sf::Vector2f actorForwardDirection = GetActorForwardDirection();
+
+		actorForwardDirection.x *= -1;
+		actorForwardDirection.y *= -1;
+
+		AddActorLocationOffset(actorForwardDirection * mSpeed * deltaTime);
 	}
 
 	

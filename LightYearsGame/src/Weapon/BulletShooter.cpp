@@ -30,8 +30,12 @@ namespace ly
 		mCooldownClock.restart();
 		LOG("Shooting");
 
-		const weak<Bullet> newBullet = GetOwner()->GetWorld()->SpawnActor<Bullet>(GetOwner(),"SpaceShooterRedux/PNG/Lasers/laserBlue02.png");
-		newBullet.lock()->SetActorLocation(GetOwner()->GetActorLocation());
+		sf::Vector2f ownerLocation = GetOwner()->GetActorLocation();
+		sf::Vector2f bulletStart = sf::Vector2f(ownerLocation.x -35, ownerLocation.y);
+
+
+		const weak<Bullet> newBullet = GetOwner()->GetWorld()->SpawnActor<Bullet>(GetOwner(),"SpaceShooterRedux/PNG/Lasers/laserBlue01.png");
+		newBullet.lock()->SetActorLocation(bulletStart);
 		newBullet.lock()->SetActorRotation(GetOwner()->GetActorRotation());
 	}
 }

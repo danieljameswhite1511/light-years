@@ -1,11 +1,8 @@
 
-#include <iostream>
 #include <framework/Application.h>
-
 #include "framework/AssetManager.h"
 #include "framework/Core.h"
 #include "framework/World.h"
-
 
 namespace ly
 {
@@ -37,19 +34,13 @@ namespace ly
 				}
 			}
 
-			
 			accumulatedTime += mTickClock.restart().asSeconds();
-			
 
-			if(accumulatedTime >= targetDeltaTime)
-			{
-				
+			if(accumulatedTime >= targetDeltaTime){
 				TickInternal(accumulatedTime);
 				accumulatedTime -= targetDeltaTime;
 				RenderInternal();
-				
 			}
-			//std::cout<< "Real time" << 1.f / frameDeltaTime << "\n";
 		}
 	}
 
@@ -73,6 +64,7 @@ namespace ly
 			
 			mCleanCycleClock.restart();
 			AssetManager::Get().CleanCycle();
+
 			
 		}
 	}

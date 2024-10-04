@@ -50,7 +50,7 @@ namespace ly {
 		{
 			mMoveInput.x = 1.f;
 		}
-		//ClampInputOnEdge();
+		ClampInputOnEdge();
 		NormalizeInput();
 
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))

@@ -20,11 +20,12 @@ namespace ly
 		AssetManager::Get().SetAssetRootDirectory(GetResourceDir());
 		
 		mSpaceship = newWorld.lock()->SpawnActor<PlayerSpaceship>();
-		
 
-		mSpaceship.lock()->SetActorLocation(sf::Vector2f{ 300.f, 490.f });
+		sf::Vector2f position{300.f, 490.f};
+
+		mSpaceship.lock()->SetActorLocation(position);
 		
-		mSpaceship.lock()->SetActorRotation(0);
+		mSpaceship.lock()->SetActorRotation(90);
 
 		//mSpaceship.lock()->SetVelocity(sf::Vector2f{ 0.f, 200.f });
 		

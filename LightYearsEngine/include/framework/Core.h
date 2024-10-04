@@ -27,7 +27,7 @@ namespace ly {
 	using dictionary = std::unordered_map<Tkey, Tvalue, hash>;
 
 //this is a macro, and how it is defined 
-#define LOG(M, ...)  printf(M "\n", ##__VA_ARGS__)
+#define LOG(M, ...)  do { printf(M "\n", ##__VA_ARGS__); fflush(stdout); } while (0)
 
 
 }

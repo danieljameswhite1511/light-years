@@ -20,16 +20,20 @@ namespace ly
 		void render(sf::RenderWindow& window);
 		void SetActorLocation(sf::Vector2f& newLocation);
 		void SetActorRotation(float newRotation);
-		float GetActorRotation();
-
-		sf::Vector2f GetActorLocation() const;
-
 		void AddActorLocationOffset(const sf::Vector2f& offsetAmt);
-		void AddActorRotationOffset(const float offsetAmt);
-		sf::Vector2f GetActorForwardDirection();
-		sf::Vector2f GetActorRightDirection();
+		void AddActorRotationOffset(float offsetAmt);
+
+
+		float GetActorRotation() const;
+		sf::Vector2f GetActorLocation() const;
+		sf::Vector2f GetActorForwardDirection() const;
+		sf::Vector2f GetActorRightDirection() const;
+
+		sf::FloatRect GetActorGlobalBounds() const;
+
 		sf::Vector2u GetWindowSize() const;
 		World* GetWorld() const { return  mOwningWorld; }
+		bool IsActorOutOfWindowBounds() const;
 
 
 	private:

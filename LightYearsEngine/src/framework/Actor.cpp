@@ -78,7 +78,7 @@ namespace ly
 		mSprite.setRotation(newRotation);
 	}
 
-	float Actor::GetActorRotation()
+	float Actor::GetActorRotation() const
 	{
 		return mSprite.getRotation();
 	}
@@ -99,19 +99,47 @@ namespace ly
 		SetActorRotation(GetActorRotation() + offsetAmt);
 	}
 
-	sf::Vector2f Actor::GetActorForwardDirection()
+	sf::Vector2f Actor::GetActorForwardDirection() const
 	{
 		return RotationToVector(GetActorRotation());
 	}
 
-	sf::Vector2f Actor::GetActorRightDirection()
+	sf::Vector2f Actor::GetActorRightDirection() const
 	{
 		return  RotationToVector(GetActorRotation() + 90.f);
+	}
+
+	sf::FloatRect Actor::GetActorGlobalBounds() const{
+		return mSprite.getGlobalBounds();
 	}
 
 	sf::Vector2u Actor::GetWindowSize() const
 	{
 		return mOwningWorld->GetWindowSize();
+	}
+
+	bool Actor::IsActorOutOfWindowBounds() const {
+		float windowWidth = mOwningWorld->GetWindowSize().x;
+		float windowHeight = mOwningWorld->GetWindowSize().y;
+
+		float actorWidth = GetActorGlobalBounds().width;
+		float actorHeight = GetActorGlobalBounds().height;
+
+		sf::Vector2f actorPosition = GetActorLocation();
+		if(actorPosition.x < -actorWidth) {
+			return true;
+		}
+		if(actorPosition.x > windowWidth + actorWidth) {
+			return true;
+		}
+		if(actorPosition.y < -actorHeight) {
+			return true;
+		}
+		if(actorPosition.y > windowHeight + actorHeight) {
+			return true;
+		}
+
+		return false;
 	}
 
 
