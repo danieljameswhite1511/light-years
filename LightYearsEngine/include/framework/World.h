@@ -18,6 +18,7 @@ namespace ly {
 
 		void render(sf::RenderWindow& window);
 		sf::Vector2u GetWindowSize();
+		void CleanCycle();
 	private:
 		Application* mOwningApp;
 		bool mBeganPlay;
