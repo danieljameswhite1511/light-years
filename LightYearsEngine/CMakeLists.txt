@@ -2,6 +2,8 @@
 
 add_library(${LIGHT_YEARS_ENGINE_TARGET_NAME} STATIC
 
+	${CMAKE_CURRENT_SOURCE_DIR}/include/framework/PhysicsSystem.h
+	${CMAKE_CURRENT_SOURCE_DIR}/src/framework/PhysicsSystem.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/framework/AssetManager.h
 	${CMAKE_CURRENT_SOURCE_DIR}/src/framework/AssetManager.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/include/framework/MathUtility.h
@@ -18,7 +20,9 @@ add_library(${LIGHT_YEARS_ENGINE_TARGET_NAME} STATIC
 	${CMAKE_CURRENT_SOURCE_DIR}/src/framework/object.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/include/EntryPoint.h
 	${CMAKE_CURRENT_SOURCE_DIR}/src/EntryPoint.cpp
-	
+
+
+
 )
 
 target_include_directories(${LIGHT_YEARS_ENGINE_TARGET_NAME} PUBLIC
