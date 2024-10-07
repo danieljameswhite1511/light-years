@@ -53,19 +53,14 @@ namespace ly
 	void Application::TickInternal(float deltaTime)
 	{
 		Tick(deltaTime);
-		if(currentWorld)
-		{
+		if(currentWorld){
 			//currentWorld->BeginPlayInternal();
 			currentWorld->TickInternal(deltaTime);
 		}
 
-		if(mCleanCycleClock.getElapsedTime().asSeconds() >= mCleanCycleInterval)
-		{
-			
+		if(mCleanCycleClock.getElapsedTime().asSeconds() >= mCleanCycleInterval){
 			mCleanCycleClock.restart();
 			AssetManager::Get().CleanCycle();
-
-			
 		}
 	}
 
