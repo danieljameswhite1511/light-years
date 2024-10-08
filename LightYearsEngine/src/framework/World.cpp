@@ -32,18 +32,9 @@ namespace ly
 		}
 		mPendingActors.clear();
 
-		//benefit of uing iterator is has the erase function that enumerates
-		for (auto iter = mActors.begin(); iter != mActors.end();)
-		{
-			if(iter->get()->IsPendingDestruction())
-			{
-				iter = mActors.erase(iter);
-			}
-			else
-			{
-				iter->get()->TickInternal(deltaTime);
-				++iter;
-			}
+		for (auto iter = mActors.begin(); iter != mActors.end();){
+			iter->get()->TickInternal(deltaTime);
+			++iter;
 		}
 		
 		Tick(deltaTime);
@@ -59,6 +50,22 @@ namespace ly
 	sf::Vector2u World::GetWindowSize()
 	{
 		return mOwningApp->GetWindowSize();
+	}
+
+	void World::CleanCycle() {
+
+		//benefit of using iterator is it has the erase function that enumerates
+		for (auto iter = mActors.begin(); iter != mActors.end();)
+		{
+			if(iter->get()->IsPendingDestruction())
+			{
+				iter = mActors.erase(iter);
+			}
+			else
+			{
+				++iter;
+			}
+		}
 	}
 
 
