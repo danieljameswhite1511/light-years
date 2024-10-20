@@ -26,4 +26,11 @@ namespace ly {
 	void Spaceship::Shoot()
 	{
 	}
+
+	void Spaceship::BeginPlay() {
+
+		LOG("Playing Spaceship");
+		Actor::BeginPlay();
+		SetEnablePhysics(true);
+	}
 }

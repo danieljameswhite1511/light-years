@@ -43,7 +43,7 @@ namespace ly
 	void World::render(sf::RenderWindow& window){
 		for (auto& actor : mActors)
 		{
-			actor->render(window);
+			actor->Render(window);
 		}
 	}
 

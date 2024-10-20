@@ -30,6 +30,11 @@ namespace ly
 
 	}
 
+	void Bullet::BeginPlay() {
+		Actor::BeginPlay();
+		SetEnablePhysics(true);
+	}
+
 	void Bullet::Move(float deltaTime)
 	{
 		sf::Vector2f actorForwardDirection = GetActorForwardDirection();

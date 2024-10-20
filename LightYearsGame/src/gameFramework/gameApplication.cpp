@@ -28,7 +28,12 @@ namespace ly
 		mSpaceship.lock()->SetActorRotation(90);
 
 		//mSpaceship.lock()->SetVelocity(sf::Vector2f{ 0.f, 200.f });
-		
+
+		weak<Spaceship> testSpaceShip = newWorld.lock()->SpawnActor<Spaceship>("SpaceShooterRedux/PNG/playerShip1_blue.png");
+		//testSpaceShip.lock()->SetTexture();
+		sf::Vector2f position2{100.f, 50.f};
+		testSpaceShip.lock()->SetActorLocation(position2);
+
 		
 
 
