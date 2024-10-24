@@ -29,6 +29,8 @@ namespace ly
 		for (shared<Actor> actor : mPendingActors)
 		{
 			mActors.push_back(actor);
+
+			actor->BeginPlay();
 		}
 		mPendingActors.clear();
 
@@ -57,7 +59,7 @@ namespace ly
 		//benefit of using iterator is it has the erase function that enumerates
 		for (auto iter = mActors.begin(); iter != mActors.end();)
 		{
-			if(iter->get()->IsPendingDestruction())
+			if(iter->get()->IsPendingDestroy())
 			{
 				iter = mActors.erase(iter);
 			}

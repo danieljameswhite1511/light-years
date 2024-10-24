@@ -21,11 +21,13 @@ namespace ly
 		
 		mSpaceship = newWorld.lock()->SpawnActor<PlayerSpaceship>();
 
+		//mSpaceship.lock()->BeginPlay();
 		sf::Vector2f position{300.f, 490.f};
 
 		mSpaceship.lock()->SetActorLocation(position);
 		
 		mSpaceship.lock()->SetActorRotation(90);
+		mSpaceship.lock()->SetEnablePhysics(true);
 
 		//mSpaceship.lock()->SetVelocity(sf::Vector2f{ 0.f, 200.f });
 
@@ -33,7 +35,7 @@ namespace ly
 		//testSpaceShip.lock()->SetTexture();
 		sf::Vector2f position2{100.f, 50.f};
 		testSpaceShip.lock()->SetActorLocation(position2);
-
+		//testSpaceShip.lock()->BeginPlay();
 		
 
 

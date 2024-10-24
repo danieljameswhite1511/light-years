@@ -12,7 +12,7 @@ namespace ly
 		  mOwningWorld{owningWorld}
 		, mSprite{}
 		, mTexture{}
-		, mPhysicsBody{}
+		, mPhysicsBody{nullptr}
 		, mPhysicsEnabled{false}
 	{
 		SetTexture(texturePath);
@@ -29,6 +29,7 @@ namespace ly
 
 	void Actor::BeginPlay()
 	{
+		mHasBegunPlay = true;
 		LOG("Actor has begun play");
 	}
 
@@ -39,7 +40,7 @@ namespace ly
 
 	void Actor::TickInternal(float deltaTime)
 	{
-		if(!IsPendingDestruction())
+		if(!IsPendingDestroy())
 		{
 			Tick(deltaTime);
 		}
@@ -67,7 +68,7 @@ namespace ly
 
 	void Actor::Render(sf::RenderWindow& window)
 	{
-		if(IsPendingDestruction()) return;
+		if(IsPendingDestroy()) return;
 			 
 		window.draw(mSprite);
 	}
@@ -75,7 +76,7 @@ namespace ly
 	void Actor::SetActorLocation(sf::Vector2f& newLocation)
 	{
 		mSprite.setPosition(newLocation);
-		UpdatePhysicsBodyTransform();
+			UpdatePhysicsBodyTransform();
 	}
 
 	void Actor::SetActorRotation(float newRotation)

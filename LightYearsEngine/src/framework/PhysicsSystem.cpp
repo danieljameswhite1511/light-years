@@ -2,6 +2,7 @@
 #include <algorithm>
 
 #include "box2d/b2_body.h"
+#include "box2d/b2_contact.h"
 #include "box2d/b2_fixture.h"
 #include "box2d/b2_polygon_shape.h"
 #include "framework/Core.h"
@@ -22,10 +23,14 @@ namespace ly{
 
     void PhysicsContactListener::BeginContact(b2Contact* contact) {
         LOG("PhysicsContactListener::BeginContact");
+
+       Actor* actorA = reinterpret_cast<Actor*>(contact->GetFixtureA()->GetBody()->GetUserData().pointer);
+       Actor* actorB = reinterpret_cast<Actor*>(contact->GetFixtureB()->GetBody()->GetUserData().pointer);
     }
 
     void PhysicsContactListener::EndContact(b2Contact* contact) {
         LOG("PhysicsContactListener::EndContact");
+       Actor* actorA = reinterpret_cast<Actor*>(contact->GetFixtureA()->GetBody()->GetUserData().pointer);
     }
 
     unique<PhysicsSystem> PhysicsSystem::physicsSystem{nullptr};
@@ -43,7 +48,7 @@ namespace ly{
     }
 
     b2Body* PhysicsSystem::AddListener(Actor* listener) {
-        if(listener->IsPendingDestruction()) return nullptr;
+        if(listener->IsPendingDestroy()) return nullptr;
         b2BodyDef bodyDef;
         bodyDef.type = b2_dynamicBody;
         bodyDef.userData.pointer = reinterpret_cast<uintptr_t>(listener);

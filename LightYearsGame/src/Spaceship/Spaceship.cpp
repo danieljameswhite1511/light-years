@@ -27,7 +27,7 @@ namespace ly {
 	{
 	}
 
-	void Spaceship::BeginPlay() {
+	void Spaceship:: BeginPlay() {
 
 		LOG("Playing Spaceship");
 		Actor::BeginPlay();

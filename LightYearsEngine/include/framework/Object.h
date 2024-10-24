@@ -6,7 +6,7 @@ namespace ly
 	public:
 		Object();
 		virtual ~Object();
-		bool IsPendingDestruction() const { return mIsPendingDestruction; }
+		bool IsPendingDestroy() const { return mIsPendingDestruction; }
 		void Destroy();
 	private:
 		bool mIsPendingDestruction;

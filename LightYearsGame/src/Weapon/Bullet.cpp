@@ -31,6 +31,7 @@ namespace ly
 	}
 
 	void Bullet::BeginPlay() {
+		LOG("Bullet::BeginPlay");
 		Actor::BeginPlay();
 		SetEnablePhysics(true);
 	}
