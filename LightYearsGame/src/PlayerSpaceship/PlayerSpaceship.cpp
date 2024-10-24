@@ -8,8 +8,8 @@ namespace ly {
 	PlayerSpaceship::PlayerSpaceship(World* owningWorld, const std::string& texturePath)
 		:Spaceship(owningWorld, texturePath)
 	, mMoveInput{}
-	, mSpeed(200.f)
-	, mShooter{new BulletShooter{this, 0.3f}}
+	, mSpeed(600.f)
+	, mShooter{new BulletShooter{this, 0.1f}}
 	{
 
 	}

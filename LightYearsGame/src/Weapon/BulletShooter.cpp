@@ -34,7 +34,7 @@ namespace ly
 		sf::Vector2f bulletStart = sf::Vector2f(ownerLocation.x -35, ownerLocation.y);
 
 
-		const weak<Bullet> newBullet = GetOwner()->GetWorld()->SpawnActor<Bullet>(GetOwner(),"SpaceShooterRedux/PNG/Lasers/laserBlue01.png");
+		const weak<Bullet> newBullet = GetOwner()->GetWorld()->SpawnActor<Bullet>(GetOwner(),"SpaceShooterRedux/PNG/Lasers/laserBlue01.png", 1000.f);
 		newBullet.lock()->SetActorLocation(bulletStart);
 		newBullet.lock()->SetActorRotation(GetOwner()->GetActorRotation());
 	}
