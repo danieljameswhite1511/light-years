@@ -1,7 +1,9 @@
 
 
 add_executable(${LIGHT_YEARS_GAME_TARGET_NAME}
-	 
+
+	${CMAKE_CURRENT_SOURCE_DIR}/include/GamePlay/HealthComponent.h
+	${CMAKE_CURRENT_SOURCE_DIR}/src/GamePlay/HealthComponent.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/include/gameFramework/GameApplication.h
 	${CMAKE_CURRENT_SOURCE_DIR}/src/gameFramework/GameApplication.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/include/Spaceship/Spaceship.h
@@ -15,6 +17,8 @@ add_executable(${LIGHT_YEARS_GAME_TARGET_NAME}
 	${CMAKE_CURRENT_SOURCE_DIR}/src/Weapon/BulletShooter.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/include/Weapon/Bullet.h
 	${CMAKE_CURRENT_SOURCE_DIR}/src/Weapon/Bullet.cpp
+
+
 
 )
 

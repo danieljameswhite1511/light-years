@@ -2,9 +2,9 @@
 #include "Spaceship/Spaceship.h"
 
 namespace ly {
-	
+
 	Spaceship::Spaceship(World* owningWorld, const std::string& texturePath)
-		: Actor{owningWorld, texturePath}, mVelocity{}
+		: Actor{owningWorld, texturePath}, mVelocity{}, mHealthComponent{100.f, 100.f}
 	{
 	}
 
