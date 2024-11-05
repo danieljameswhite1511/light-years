@@ -16,15 +16,18 @@ namespace  ly {
         float GetPhysicsScale() const;
 
         void RemoveListener(b2Body* bodyToRemove);
+        static void Cleanup();
 
     protected:
         PhysicsSystem();
     private:
+        void ProcessPendingRemoveListeners();
         static unique<PhysicsSystem> physicsSystem;
         b2World mPhysicsWorld;
         float mPhysicsScale;
         int mVelocityIterations;
         int mPositionIterations;
         PhysicsContactListener mContactListener;
+        set<b2Body*> mPendingRemoveListeners;
     };
 }

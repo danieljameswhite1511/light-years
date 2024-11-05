@@ -20,17 +20,47 @@ namespace ly{
        mPhysicsWorld.SetAllowSleeping(false);
     }
 
+   void PhysicsSystem::ProcessPendingRemoveListeners() {
+       for (auto listener : mPendingRemoveListeners) {
+           mPhysicsWorld.DestroyBody(listener);
+       }
+   }
 
-    void PhysicsContactListener::BeginContact(b2Contact* contact) {
-        LOG("PhysicsContactListener::BeginContact");
+
+   void PhysicsContactListener::BeginContact(b2Contact* contact) {
 
        Actor* actorA = reinterpret_cast<Actor*>(contact->GetFixtureA()->GetBody()->GetUserData().pointer);
        Actor* actorB = reinterpret_cast<Actor*>(contact->GetFixtureB()->GetBody()->GetUserData().pointer);
+
+       if(actorA && !actorA->IsPendingDestroy()) {
+           actorA->OnBeginOverlap(actorB);
+       }
+
+       if(actorB && !actorB->IsPendingDestroy()) {
+           actorB->OnBeginOverlap(actorA);
+       }
     }
 
     void PhysicsContactListener::EndContact(b2Contact* contact) {
-        LOG("PhysicsContactListener::EndContact");
-       Actor* actorA = reinterpret_cast<Actor*>(contact->GetFixtureA()->GetBody()->GetUserData().pointer);
+
+       Actor* actorA = nullptr;
+       Actor* actorB = nullptr;
+
+       if(contact->GetFixtureA() && contact->GetFixtureA()->GetBody()) {
+           actorA = reinterpret_cast<Actor*>(contact->GetFixtureA()->GetBody()->GetUserData().pointer);
+       }
+
+       if(contact->GetFixtureB() && contact->GetFixtureB()->GetBody()) {
+           actorB = reinterpret_cast<Actor*>(contact->GetFixtureB()->GetBody()->GetUserData().pointer);
+
+       }
+
+       if(actorA && !actorA->IsPendingDestroy()) {
+           actorA->OnEndOverlap(actorB);
+       }
+       if(actorB && !actorB->IsPendingDestroy()) {
+           actorB->OnEndOverlap(actorA);
+       }
     }
 
     unique<PhysicsSystem> PhysicsSystem::physicsSystem{nullptr};
@@ -44,6 +74,7 @@ namespace ly{
     }
 
     void PhysicsSystem::Step(float deltaTime) {
+        ProcessPendingRemoveListeners();
         mPhysicsWorld.Step(deltaTime, mVelocityIterations, mPositionIterations);
     }
 
@@ -75,7 +106,12 @@ namespace ly{
     }
 
     void PhysicsSystem::RemoveListener(b2Body* bodyToRemove) {
+
         //todo remove listener
 
+    }
+
+    void PhysicsSystem::Cleanup() {
+        physicsSystem = std::move(unique<PhysicsSystem>{new PhysicsSystem});
     }
 }

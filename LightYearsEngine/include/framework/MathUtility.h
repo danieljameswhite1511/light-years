@@ -2,6 +2,8 @@
 #include "SFML/System/Vector2.hpp"
 #include <valarray>
 
+#include "SFML/Graphics/Color.hpp"
+
 namespace ly {
 	sf::Vector2f RotationToVector(float rotation);
 	float DegreesToRadians(float degrees);
@@ -32,4 +34,10 @@ namespace ly {
 
 
 	}
+
+	sf::Vector2f LerpVector(sf::Vector2f a, sf::Vector2f b, float alpha);
+
+	sf::Color LerpColor(sf::Color& a, sf::Color& b, float alpha);
+
+	float LerpFloat(float a, float b, float alpha);
 }

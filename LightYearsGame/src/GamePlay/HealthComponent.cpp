@@ -25,23 +25,23 @@ namespace ly {
         if(amt < 0) {
             TakenDamage(-amt);
             if(mHealth <= 0) {
-
-            }else {
-                HealthRegen(amt);
+                HealthEmpty();
             }
         }
 
+        onHealthChanged.Broadcast(amt, mHealth, mMaxHealth);
     }
 
     void HealthComponent::TakenDamage(float amt) {
-        LOG("TakenDamage %f, now health is %f/%f ", amt, mHealth, mMaxHealth);
+        //LOG("TakenDamage %f, now health is %f/%f ", amt, mHealth, mMaxHealth);
+        onTakenDamages.Broadcast(amt, mHealth, mMaxHealth);
     }
 
     void HealthComponent::HealthEmpty() {
-        LOG("Dead");
+
+        //LOG("Dead");
+        onHealthEmpty.Broadcast();
     }
 
-    void HealthComponent::HealthRegen(float amt) {
-        LOG("HealthRegen %f ", amt);
-    }
+
 }

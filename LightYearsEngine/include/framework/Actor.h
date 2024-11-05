@@ -34,7 +34,16 @@ namespace ly
 		bool IsActorOutOfWindowBounds() const;
 		void SetEnablePhysics(bool enablePhysics);
 
-
+		virtual void OnBeginOverlap(Actor * actor);
+		virtual void OnEndOverlap(Actor * actor);
+		virtual void Destroy() override;
+		static uint8 GetNeutralTeamId(){return neutralTeamId;}
+		bool IsOtherHostile(Actor* actor) const;
+		uint8 GetTeamId() const {return mTeamId;};
+		void SetTeamId(uint8 teamId){mTeamId = teamId;};
+		virtual void ApplyDamage(float damage);
+		sf::Sprite GetSprite() {return mSprite;}
+		const sf::Sprite GetSprite() const {return mSprite;}
 
 	private:
 		void CentrePivot();
@@ -48,6 +57,8 @@ namespace ly
 		shared<sf::Texture> mTexture;
 		b2Body* mPhysicsBody;
 		bool mPhysicsEnabled;
+		const static uint8 neutralTeamId = 255;
+		uint8 mTeamId;
 
 	};
 

@@ -31,10 +31,11 @@ namespace ly
 
 		mSpaceship.lock()->SetVelocity(sf::Vector2f{ 0.f, 200.f });
 
-		weak<Spaceship> testSpaceShip = newWorld.lock()->SpawnActor<Spaceship>("SpaceShooterRedux/PNG/playerShip1_blue.png");
+		mSpaceship2 = newWorld.lock()->SpawnActor<Spaceship>("SpaceShooterRedux/PNG/playerShip1_blue.png");
 		//testSpaceShip.lock()->SetTexture();
 		sf::Vector2f position2{100.f, 50.f};
-		testSpaceShip.lock()->SetActorLocation(position2);
+		mSpaceship2.lock()->SetActorLocation(position2);
+		mSpaceship2.lock()->SetTeamId(2);
 		//testSpaceShip.lock()->BeginPlay();
 		
 
@@ -48,9 +49,9 @@ namespace ly
 
 		if(counter > 10)
 		{
-			if(!mSpaceship.expired())
+			if(!mSpaceship2.expired())
 			{
-				//mSpaceship.lock()->Destroy();
+				//mSpaceship2.lock()->Destroy();
 			}
 			
 		}

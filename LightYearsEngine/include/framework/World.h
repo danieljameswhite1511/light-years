@@ -23,8 +23,8 @@ namespace ly {
 		bool mBeganPlay;
 		void BeginPlay();
 		void Tick(float deltaTime);
-		list<shared<Actor>> mActors;
-		list<shared<Actor>> mPendingActors;
+		List<shared<Actor>> mActors;
+		List<shared<Actor>> mPendingActors;
 
 	};
 

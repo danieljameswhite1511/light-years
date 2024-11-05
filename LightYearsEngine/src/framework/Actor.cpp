@@ -14,6 +14,7 @@ namespace ly
 		, mTexture{}
 		, mPhysicsBody{nullptr}
 		, mPhysicsEnabled{false}
+		, mTeamId{GetNeutralTeamId()}
 	{
 		SetTexture(texturePath);
 	}	
@@ -159,6 +160,33 @@ namespace ly
 		}
 	}
 
+	void Actor::OnBeginOverlap(Actor *actor) {
+
+		LOG("Actor::OnOverlap");
+	}
+
+	void Actor::OnEndOverlap(Actor *actor) {
+		LOG("Actor::OnEndOverlap");
+	}
+
+	void Actor::Destroy() {
+		UninitializePhysics();
+		Object::Destroy();
+	}
+
+	bool Actor::IsOtherHostile(Actor* other) const {
+		if(GetTeamId() == GetNeutralTeamId() || other->GetTeamId() == GetNeutralTeamId()) {
+			return false;
+		}
+
+		return GetTeamId() != other->GetTeamId();
+	}
+
+
+	void Actor::ApplyDamage(float damage) {
+
+	}
+
 	void Actor::CentrePivot(){
 		
 		sf::FloatRect bound = mSprite.getGlobalBounds();
@@ -177,6 +205,7 @@ namespace ly
 
 		if(mPhysicsBody) {
 			PhysicsSystem::Get().RemoveListener(mPhysicsBody);
+			mPhysicsBody = nullptr;
 		}
 
 	}

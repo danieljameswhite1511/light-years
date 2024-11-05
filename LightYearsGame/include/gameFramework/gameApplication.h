@@ -20,6 +20,7 @@ namespace ly
 	private:
 		float counter;
 		weak<Spaceship> mSpaceship;
+		weak<Spaceship> mSpaceship2;
 		
 	};
 }

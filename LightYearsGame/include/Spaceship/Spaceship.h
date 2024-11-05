@@ -13,11 +13,19 @@ namespace ly {
 		virtual void Tick(float deltaTime) override;
 		virtual void Shoot();
 		virtual void BeginPlay() override;
-	
+		virtual void ApplyDamage(float damage) override;
+
 	private:
-		
+		void Blink();
+		void UpdateBlink(float deltaTime);
+		virtual void OnHealthChanged(float amount, float health, float maxHealth);
+		virtual void OnTakenDamage(float amount, float health, float maxHealth);
+		virtual void Explode();
 		sf::Vector2f mVelocity;
 		HealthComponent mHealthComponent;
+		float mBlinkTime;
+		float mBlinkDuration;
+		sf::Color mBlinkColorOffset;
 
 	};
 }
